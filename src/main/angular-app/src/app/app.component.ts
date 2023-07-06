@@ -18,6 +18,7 @@ export class AppComponent {
 	decimalRegex: string = '(^[0-9]+[.]{1}[0-9]*$)|(^[1-9]{1}[0-9]*$)'
 
 	ngOnInit() {
+		this.getAllPoints()
 		this.getLines()
 	}
 
@@ -35,9 +36,7 @@ export class AppComponent {
 		this.httpService.callPost('addPoint', this.newPoint).subscribe(
 			(data: any) => {
 				this.getLines()
-				if (this.allPoints.length) {
-					this.getAllPoints()
-				}
+				this.getAllPoints()
 				if (this.linesWithXPoints) {
 					this.getLinesWithXPoints()
 				}
@@ -61,9 +60,7 @@ export class AppComponent {
 		this.httpService.callGet('reinitPoints').subscribe(
 			(data: any) => {
 				this.getLines()
-				if (this.allPoints.length) {
-					this.getAllPoints()
-				}
+				this.getAllPoints()
 				if (this.linesWithXPoints) {
 					this.getLinesWithXPoints()
 				}
@@ -77,9 +74,7 @@ export class AppComponent {
 		this.httpService.callDelete('removePoints').subscribe(
 			(data: any) => {
 				this.getLines()
-				if (this.allPoints.length) {
-					this.getAllPoints()
-				}
+				this.getAllPoints()
 				if (this.linesWithXPoints) {
 					this.getLinesWithXPoints()
 				}
