@@ -5,18 +5,16 @@ import FrancescoPaci.wellDtest.model.Line;
 import FrancescoPaci.wellDtest.model.Point;
 import FrancescoPaci.wellDtest.service.PointService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
-public class MainController {
+public class MainController implements BasicController {
 
     @Autowired
     private PointService pointService;
@@ -62,6 +60,33 @@ public class MainController {
             }
         }
         return lines;
+    }
+
+    @PostMapping("/addPoint")
+    public void addPoint(@RequestBody Point point) {
+        fakeDb.getPoints().add(point);
+    }
+
+    @GetMapping("/getAllPoints")
+    public List<Point> getAllPoints() {
+        return fakeDb.getPoints();
+    }
+
+    @GetMapping("/removePoints")
+    public void removePoints() {
+        fakeDb.removePoints();
+    }
+
+    @GetMapping("/reinitPoints")
+    public void reinitPoints() {
+        fakeDb.reinitPoints();
+    }
+
+    @GetMapping("/getLinesWithXPoints/{pointsNumber}")
+    public List<Line> getLinesWithXPoints(@PathVariable Integer pointsNumber) {
+        return getLines().stream()
+                .filter(line -> line.getPoints().size() == pointsNumber)
+                .collect(Collectors.toList());
     }
 
 }

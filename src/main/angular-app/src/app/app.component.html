@@ -1,0 +1,66 @@
+<div class="container-fluid">
+
+  <div class="row mt-2">
+    <div class="col-12">
+      <h4>There are {{lines.length}} lines:</h4>
+    </div>
+    <div class="col-12" *ngFor="let line of lines; let i = index">Points of line {{i+1}}: {{line.points | json}}</div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-12">
+      <h4>Add a point:</h4>
+      <form name="form" (ngSubmit)="f.form.valid && addPoint()" #f="ngForm" novalidate>
+        <div class="row">
+          <div class="col-12 form-inline">
+            <label class="mr-2">X:</label>
+            <input [(ngModel)]="newPoint.x" name="x" type="text" pattern="^[0-9]+[.]{0,1}[0-9]*$" class="form-control form-control-sm mr-3" required>
+            <label class="mr-2">Y:</label>
+            <input [(ngModel)]="newPoint.y" name="y" type="text" pattern="^[0-9]+[.]{0,1}[0-9]*$" class="form-control form-control-sm mr-3" required>
+            <button class="btn btn-primary btn-sm" type="submit" [disabled]="f.form.invalid">Add</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row mb-2">
+    <div class="col-12">
+      <button (click)="getAllPoints()" class="btn btn-primary btn-sm" type="submit">Get all Points</button>
+      <button (click)="removePoints()" class="btn btn-primary btn-sm ml-3" type="submit">Remove all Points</button>
+      <button (click)="reinitPoints()" class="btn btn-primary btn-sm ml-3" type="submit">Reinitialize points</button>
+    </div>
+  </div>
+  <div class="row" *ngFor="let point of allPoints; let i = index">
+    <div class="col-3">Point {{i+1}}: {{point | json}}</div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-12">
+      <h4>Show all lines that have N points:</h4>
+      <form name="form" (ngSubmit)="f2.form.valid && getLinesWithXPoints()" #f2="ngForm" novalidate>
+        <div class="row">
+          <div class="col-6 form-inline">
+            <label class="mr-2">Number of points:</label>
+            <input [(ngModel)]="pointsNumber" name="pointsNumber" type="number" min="2" class="form-control form-control-sm mr-2" required>
+            <button class="btn btn-primary btn-sm" type="submit" [disabled]="f2.form.invalid">Search</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="row mt-1" [hidden]="!linesWithXPoints">
+    <div class="col-12">There are {{linesWithXPoints ? linesWithXPoints.length : 0}} lines with {{pointsNumber}} points:</div>
+    <div class="col-12" *ngFor="let line of linesWithXPoints; let i = index">Line {{i+1}}: {{line.points | json}}</div>
+  </div>
+
+  <hr>
+
+</div>
