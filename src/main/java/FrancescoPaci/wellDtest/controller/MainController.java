@@ -72,7 +72,7 @@ public class MainController implements BasicController {
         return fakeDb.getPoints();
     }
 
-    @GetMapping("/removePoints")
+    @DeleteMapping("/removePoints")
     public void removePoints() {
         fakeDb.removePoints();
     }

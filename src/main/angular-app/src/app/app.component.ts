@@ -15,6 +15,7 @@ export class AppComponent {
 	linesWithXPoints: any = null
 	newPoint: any = { x: '', y: '' }
 	pointsNumber: number = 2
+	decimalRegex: string = '(^[0-9]+[.]{1}[0-9]*$)|(^[1-9]{1}[0-9]*$)'
 
 	ngOnInit() {
 		this.getLines()
@@ -73,7 +74,7 @@ export class AppComponent {
 	}
 
 	removePoints() {
-		this.httpService.callGet('removePoints').subscribe(
+		this.httpService.callDelete('removePoints').subscribe(
 			(data: any) => {
 				this.getLines()
 				if (this.allPoints.length) {

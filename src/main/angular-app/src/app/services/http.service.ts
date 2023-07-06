@@ -35,4 +35,12 @@ export class HttpService {
         ))
     }
 
+    callDelete(url: string) {
+        return this.http.delete(this.baseUrl + url).pipe(tap(
+            (data: any) => { },
+            (error: any) => { },
+            () => { }
+        ))
+    }
+
 }
