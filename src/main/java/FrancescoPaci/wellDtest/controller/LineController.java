@@ -1,7 +1,7 @@
 package FrancescoPaci.wellDtest.controller;
 
-import FrancescoPaci.wellDtest.model.FakeDb;
 import FrancescoPaci.wellDtest.model.Line;
+import FrancescoPaci.wellDtest.model.MockedData;
 import FrancescoPaci.wellDtest.model.Point;
 import FrancescoPaci.wellDtest.service.PointService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,18 +14,18 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-public class MainController implements BasicController {
+public class LineController implements BasicController {
 
     @Autowired
     private PointService pointService;
 
     @Autowired
-    private FakeDb fakeDb;
+    private MockedData mockedData;
 
     @GetMapping("/getLines")
     public List<Line> getLines() {
 
-        List<Point> points = fakeDb.getPoints();
+        List<Point> points = mockedData.getPoints();
 
         List<Line> lines = new ArrayList<>();
         List<BigDecimal> slopes = new ArrayList<>(Arrays.asList(BigDecimal.ZERO));
@@ -64,22 +64,22 @@ public class MainController implements BasicController {
 
     @PostMapping("/addPoint")
     public void addPoint(@RequestBody Point point) {
-        fakeDb.getPoints().add(point);
+        mockedData.getPoints().add(point);
     }
 
     @GetMapping("/getAllPoints")
     public List<Point> getAllPoints() {
-        return fakeDb.getPoints();
+        return mockedData.getPoints();
     }
 
     @DeleteMapping("/removePoints")
     public void removePoints() {
-        fakeDb.removePoints();
+        mockedData.removePoints();
     }
 
     @GetMapping("/reinitPoints")
     public void reinitPoints() {
-        fakeDb.reinitPoints();
+        mockedData.reinitPoints();
     }
 
     @GetMapping("/getLinesWithXPoints/{pointsNumber}")

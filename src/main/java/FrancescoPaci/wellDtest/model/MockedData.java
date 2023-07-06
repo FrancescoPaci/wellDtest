@@ -8,14 +8,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class FakeDb {
+public class MockedData {
 
-    private final Point point1 = new Point(new BigDecimal("3"), new BigDecimal("9"));
+    private final Point point1 = new Point(new BigDecimal("3"), new BigDecimal("12"));
     private final Point point2 = new Point(new BigDecimal("-2"), new BigDecimal("-16"));
     private final Point point3 = new Point(new BigDecimal("0.2"), new BigDecimal("-5"));
-    private final Point point4 = new Point(new BigDecimal("31"), new BigDecimal("34"));
+    private final Point point4 = new Point(new BigDecimal("15"), new BigDecimal("12"));
     private final Point point5 = new Point(new BigDecimal("3"), new BigDecimal("11"));
-    private final Point point6 = new Point(new BigDecimal("3"), new BigDecimal("13"));
+    private final Point point6 = new Point(new BigDecimal("3"), new BigDecimal("9"));
+    private final Point point7 = new Point(new BigDecimal("3"), new BigDecimal("18"));
 
     private List<Point>  points = new ArrayList<>();
 
@@ -27,6 +28,7 @@ public class FakeDb {
         points.add(point4);
         points.add(point5);
         points.add(point6);
+        points.add(point7);
     }
 
     public void reinitPoints() {
