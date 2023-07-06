@@ -15,7 +15,7 @@ export class AppComponent {
 	linesWithXPoints: any = null
 	newPoint: any = { x: '', y: '' }
 	pointsNumber: number = 2
-	decimalRegex: string = '^[-]{0,1}((0{1}\.[0-9]*)|([1-9]+0*\.[0-9]*)|([1-9]{1}[0-9]*))$'
+	decimalRegex: RegExp = /^[-]{0,1}((0{1})|(0{1}[.]{1}[0-9]*)|([1-9]+0*[.]{1}[0-9]*)|([1-9]{1}[0-9]*))$/
 
 	ngOnInit() {
 		this.getAllPoints()

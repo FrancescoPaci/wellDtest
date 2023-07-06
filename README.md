@@ -11,5 +11,5 @@ Instruction to run application:
 notes:
 - There are already points at the beginning
 - I voluntarily leaved the possibility to insert points with same coordinates of point already present in the space.
-- Is possible to insert decimal points using the point and not the comma (es. 2.5)
+- When adding a point is possible to insert negative number and decimal number using the dot and not the comma (es. 2.5)
 - I put that all points are visible from beginning because is more clear what happens when points are added or removed
