@@ -14,7 +14,7 @@ public class PointService {
         BigDecimal y = point1.getY().subtract(point2.getY());
         BigDecimal slope;
         if(y.compareTo(BigDecimal.ZERO) != 0){
-            slope =  x.divide(y, 6, RoundingMode.HALF_UP);
+            slope = x.divide(y, 6, RoundingMode.HALF_UP);
         } else if(x.compareTo(BigDecimal.ZERO) != 0) {
             slope = y.divide(x, 6, RoundingMode.HALF_UP);
         } else {
